@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <%- include('../navbar') %>
+    <div>
+      <form method="POST" action="/candies/create">
+        <h2>New Candy</h2>
+        <label for="name">Name: </label><br />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          maxlength="15"
+          required
+        /><br />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+</html>

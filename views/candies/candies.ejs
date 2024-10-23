@@ -1,0 +1,18 @@
+<html>
+  <body>
+    <%- include('../navbar') %>
+    <div>
+      <p>Candies</p>
+      <a href="/candies/create">Create Candy</a>
+      <% if (candies) {%> <% candies.forEach(candy => { %>
+      <div>
+        <h3><%= candy.name%></h3>
+        <p><%= candy.type %></p>
+        <p><%= candy.company%></p>
+        <p>$<%= candy.price%></p>
+        <p>Quantity: <%= candy.quantity%></p>
+      </div>
+      <% }); %> <% } %>
+    </div>
+  </body>
+</html>

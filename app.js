@@ -11,6 +11,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.use("/", homeRouter);
+app.use("/candies", candiesRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
