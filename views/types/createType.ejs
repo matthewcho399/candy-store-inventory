@@ -2,7 +2,19 @@
   <body>
     <%- include('../navbar') %>
     <div>
-      <p>Create Type</p>
+      <form method="POST" action="/types/create">
+        <h2>New Type</h2>
+        <label for="type">Type: </label><br />
+        <input
+          type="text"
+          id="type"
+          name="type"
+          minlength="3"
+          maxlength="15"
+          required
+        /><br />
+        <input type="submit" value="Submit" />
+      </form>
     </div>
   </body>
 </html>
