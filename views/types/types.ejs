@@ -1,0 +1,16 @@
+<html>
+  <body>
+    <%- include('../navbar') %>
+    <div>
+      <p>Types</p>
+      <a href="/types/create">Create Type</a>
+      <% if (types) {%> <% types.forEach(type => { %>
+      <div>
+        <a href="/types/<%= type.name %>">
+          <h3><%= type.name%></h3>
+        </a>
+      </div>
+      <% }); %> <% } %>
+    </div>
+  </body>
+</html>

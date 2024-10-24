@@ -1,5 +1,6 @@
 const candies = [
   {
+    id: 0,
     name: "Twix",
     type: ["chocolate", "caramel"],
     company: "Mars",
@@ -7,6 +8,7 @@ const candies = [
     quantity: 15,
   },
   {
+    id: 1,
     name: "Gummy Bear",
     type: ["gummy"],
     company: "Albanese",
@@ -14,6 +16,7 @@ const candies = [
     quantity: 20,
   },
   {
+    id: 2,
     name: "M&M",
     type: ["chocholate"],
     company: "M&M",
@@ -26,11 +29,11 @@ const candiesGet = (req, res) => {
   res.render("candies/candies", { candies });
 };
 
-const candiesPost = (req, res) => {
+const createCandyGet = (req, res) => {
   res.render("candies/createCandy");
 };
 
 module.exports = {
   candiesGet,
-  candiesPost,
+  createCandyGet,
 };

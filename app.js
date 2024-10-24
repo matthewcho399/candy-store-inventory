@@ -12,6 +12,7 @@ app.set("view engine", "ejs");
 
 app.use("/", homeRouter);
 app.use("/candies", candiesRouter);
+app.use("/types", typesRouter);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
