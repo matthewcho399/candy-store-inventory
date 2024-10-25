@@ -7,7 +7,11 @@
       <% if (candies) {%> <% candies.forEach(candy => { %>
       <div>
         <h3><%= candy.name%></h3>
-        <p><%= candy.type %></p>
+        <ul>
+          <% candy.types.forEach(type => { %>
+          <li><%= type %></li>
+          <% }); %>
+        </ul>
         <p><%= candy.company%></p>
         <p>$<%= candy.price%></p>
         <p>Quantity: <%= candy.quantity%></p>
