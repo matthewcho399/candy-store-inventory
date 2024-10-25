@@ -4,13 +4,14 @@
     <div>
       <form method="POST" action="/types/create">
         <h2>New Type</h2>
+        <%- include("../partials/errors.ejs") %>
         <label for="type">Type: </label><br />
         <input
           type="text"
           id="type"
           name="type"
-          minlength="3"
-          maxlength="15"
+          minlength="1"
+          maxlength="20"
           required
         /><br />
         <input type="submit" value="Submit" />
