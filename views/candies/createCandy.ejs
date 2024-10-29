@@ -4,14 +4,51 @@
     <div>
       <form method="POST" action="/candies/create">
         <h2>New Candy</h2>
+        <%- include("../partials/errors.ejs") %>
         <label for="name">Name: </label><br />
         <input
           type="text"
           id="name"
           name="name"
-          maxlength="15"
+          maxlength="20"
           required
         /><br />
+
+        <label for="types">Types: </label><br />
+        <select id="types" name="types" multiple required>
+          <% if (types) { %> <% types.forEach(type => { %>
+          <option value="<%= type.type %>"><%= type.type %></option>
+          <% }); %> <% } %></select
+        ><br />
+
+        <label for="company">Company: </label><br />
+        <input
+          type="text"
+          id="company"
+          name="company"
+          maxlength="20"
+          required
+        /><br />
+
+        <label for="quantity">Quantity: </label><br />
+        <input
+          type="number"
+          id="quantity"
+          name="quantity"
+          min="0"
+          required
+        /><br />
+
+        <label for="price">Price: </label><br />
+        <input
+          type="number"
+          id="price"
+          name="price"
+          step="any"
+          min="0"
+          required
+        /><br />
+
         <input type="submit" value="Submit" />
       </form>
     </div>
