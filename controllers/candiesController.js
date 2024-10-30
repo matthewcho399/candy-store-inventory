@@ -6,7 +6,7 @@ const validStringErr =
 const lengthErr = "must be between 1 and 20 characters";
 const numberErr = "must only contain numbers";
 const quantityErr = "must be between 0 and 999";
-const decimalErr = "must be a valid price";
+const decimalErr = "Price must be a number with up to two decimal places";
 const priceErr = "must be between 0 and 300";
 
 const validateCandy = [
@@ -30,9 +30,9 @@ const validateCandy = [
     .withMessage(`Quantity ${quantityErr}`),
   body("price")
     .trim()
-    .isAlphanumeric()
-    .withMessage(`Price ${decimalErr}`)
-    .isDecimal({ min: 0, max: 999 })
+    .matches(/^\d+(\.\d{1,2})?$/)
+    .withMessage(decimalErr)
+    .isFloat({ min: 0, max: 300 })
     .withMessage(`Price ${priceErr}`),
 ];
 
@@ -50,20 +50,41 @@ const createCandyPost = [
   validateCandy,
   async (req, res) => {
     const errors = validationResult(req);
+    const types = await db.getTypes();
     if (!errors.isEmpty()) {
-      const types = await db.getTypes();
       return res.status(400).render("candies/createCandy", {
         errors: errors.array(),
         types,
       });
     }
-    console.log(req.body);
     const { name, company, quantity, price } = req.body;
-    const types = req.body.types;
-    console.log(types);
+    const candyTypes = req.body.types;
+    const candyId = await db.createCandy(name, company, quantity, price);
+    const typeIds = extractTypeIds(types, candyTypes);
+
+    linkCandyToType(candyId, typeIds);
+
     res.redirect("/candies");
   },
 ];
+
+const extractTypeIds = (types, candyTypes) => {
+  const typeIds = [];
+  for (const candyType of candyTypes) {
+    for (const type of types) {
+      if (candyType === type.type) {
+        typeIds.push(type.id);
+      }
+    }
+  }
+  return typeIds;
+};
+
+async function linkCandyToType(candyId, typeIds) {
+  for (const id of typeIds) {
+    await db.linkCandyToType(candyId, id);
+  }
+}
 
 module.exports = {
   candiesGet,
