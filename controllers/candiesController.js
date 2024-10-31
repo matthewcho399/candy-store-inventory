@@ -68,6 +68,11 @@ const createCandyPost = [
   },
 ];
 
+async function candyDetailsGet(req, res) {
+  const candyDetails = await db.getCandyDetails(req.params.id);
+  res.render("candies/candyDetails", { candyDetails: candyDetails[0] });
+}
+
 const extractTypeIds = (types, candyTypes) => {
   const typeIds = [];
   for (const candyType of candyTypes) {
@@ -90,4 +95,5 @@ module.exports = {
   candiesGet,
   createCandyGet,
   createCandyPost,
+  candyDetailsGet,
 };

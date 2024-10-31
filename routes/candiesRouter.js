@@ -7,4 +7,6 @@ router.get("/", controller.candiesGet);
 router.get("/create", controller.createCandyGet);
 router.post("/create", controller.createCandyPost);
 
+router.get("/:id", controller.candyDetailsGet);
+
 module.exports = router;

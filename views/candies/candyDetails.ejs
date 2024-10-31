@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <%- include('../navbar') %>
+    <div>
+      <h3><%= candyDetails.name%></h3>
+      <p>Types:</p>
+      <ul>
+        <% candyDetails.types.forEach(type => { %>
+        <li><%= type %></li>
+        <% }); %>
+      </ul>
+      <p><%= candyDetails.company%></p>
+      <p><%= candyDetails.quantity %></p>
+      <p><%= candyDetails.price %></p>
+    </div>
+  </body>
+</html>

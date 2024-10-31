@@ -6,7 +6,7 @@
       <a href="/candies/create">Create Candy</a>
       <% if (candies) {%> <% candies.forEach(candy => { %>
       <div>
-        <h3><%= candy.name%></h3>
+        <h3><a href="/candies/<%=candy.id %>"><%= candy.name%></a></h3>
         <ul>
           <% candy.types.forEach(type => { %>
           <li><%= type %></li>
