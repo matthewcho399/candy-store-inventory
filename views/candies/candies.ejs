@@ -4,19 +4,8 @@
     <div>
       <p>Candies</p>
       <a href="/candies/create">Create Candy</a>
-      <% if (candies) {%> <% candies.forEach(candy => { %>
-      <div>
-        <h3><a href="/candies/<%=candy.id %>"><%= candy.name%></a></h3>
-        <ul>
-          <% candy.types.forEach(type => { %>
-          <li><%= type %></li>
-          <% }); %>
-        </ul>
-        <p><%= candy.company%></p>
-        <p>$<%= candy.price%></p>
-        <p>Quantity: <%= candy.quantity%></p>
-      </div>
-      <% }); %> <% } %>
+      <% if (candies) {%> <% candies.forEach(candy => { %> <%-
+      include('../partials/candyCard', {candy}) %> <% }); %> <% } %>
     </div>
   </body>
 </html>
