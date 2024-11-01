@@ -25,9 +25,10 @@ async function typesGet(req, res) {
   res.render("types/types", { types });
 }
 
-const singleTypeGet = (req, res) => {
-  res.render("types/singleType");
-};
+async function singleTypeGet(req, res) {
+  const candies = await db.getCandiesByType(req.params.type);
+  res.render("types/singleType", { candies });
+}
 
 const createTypeGet = (req, res) => {
   res.render("types/createType");

@@ -7,6 +7,6 @@ router.get("/", controller.typesGet);
 router.get("/create", controller.createTypeGet);
 router.post("/create", controller.createTypePost);
 
-router.get("/:candy", controller.singleTypeGet);
+router.get("/:type", controller.singleTypeGet);
 
 module.exports = router;

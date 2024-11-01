@@ -2,7 +2,20 @@
   <body>
     <%- include('../navbar') %>
     <div>
-      <h3>Candies from this type</h3>
+      <h2>Candies from this type</h2>
+      <% if (candies) {%> <% candies.forEach(candy => { %>
+      <div>
+        <h3><a href="/candies/<%=candy.id %>"><%= candy.name%></a></h3>
+        <ul>
+          <% candy.types.forEach(type => { %>
+          <li><%= type %></li>
+          <% }); %>
+        </ul>
+        <p><%= candy.company%></p>
+        <p>Price: $<%= candy.price%></p>
+        <p>Quantity: <%= candy.quantity%></p>
+      </div>
+      <% }); %> <% } %>
     </div>
   </body>
 </html>
