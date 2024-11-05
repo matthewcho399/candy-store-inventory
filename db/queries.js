@@ -18,12 +18,12 @@ async function getCandies() {
 }
 
 async function getTypes() {
-  const { rows } = await pool.query("SELECT * FROM types");
+  const { rows } = await pool.query("SELECT * FROM types;");
   return rows;
 }
 
 async function getTypeByName(type) {
-  const { rows } = await pool.query("SELECT * FROM types WHERE type = $1", [
+  const { rows } = await pool.query("SELECT * FROM types WHERE type = $1;", [
     type,
   ]);
   return rows[0];
@@ -31,21 +31,19 @@ async function getTypeByName(type) {
 
 async function createCandy(name, company, quantity, price) {
   const candy = await pool.query(
-    "INSERT INTO candies ( name, company, quantity, price ) VALUES ($1, $2, $3, $4) RETURNING id",
+    "INSERT INTO candies ( name, company, quantity, price ) VALUES ($1, $2, $3, $4) RETURNING id;",
     [name, company, quantity, price]
   );
-  console.log("candy query", candy.rows[0].id);
   return candy.rows[0].id;
 }
 
 async function createType(type) {
-  await pool.query("INSERT INTO types (type) VALUES ($1)", [type]);
+  await pool.query("INSERT INTO types (type) VALUES ($1);", [type]);
 }
 
 async function linkCandyToType(candyId, typeId) {
-  console.log("candyid and typeid from query", candyId, typeId);
   await pool.query(
-    "INSERT INTO candy_types (candy_id, type_id) VALUES ($1, $2)",
+    "INSERT INTO candy_types (candy_id, type_id) VALUES ($1, $2);",
     [candyId, typeId]
   );
 }
@@ -86,6 +84,19 @@ async function getCandiesByType(type) {
   return rows;
 }
 
+async function updateCandy(id, name, company, quantity, price) {
+  await pool.query(
+    `UPDATE candies 
+    SET name = $2, company = $3, quantity = $4, price = $5
+    WHERE id = $1;`,
+    [id, name, company, quantity, price]
+  );
+}
+
+async function deleteCandyTypes(candyId) {
+  await pool.query("DELETE FROM candy_types WHERE candy_id = $1;", [candyId]);
+}
+
 module.exports = {
   getCandies,
   getTypes,
@@ -95,4 +106,6 @@ module.exports = {
   linkCandyToType,
   getCandyDetails,
   getCandiesByType,
+  updateCandy,
+  deleteCandyTypes,
 };

@@ -73,6 +73,35 @@ async function candyDetailsGet(req, res) {
   res.render("candies/candyDetails", { candyDetails: candyDetails[0] });
 }
 
+async function updateCandyGet(req, res) {
+  const candyDetails = await db.getCandyDetails(req.params.id);
+  const types = await db.getTypes();
+  res.render("candies/updateCandy", { candy: candyDetails[0], types: types });
+}
+
+const updateCandyPost = [
+  validateCandy,
+  async (req, res) => {
+    const errors = validationResult(req);
+    const types = await db.getTypes();
+    if (!errors.isEmpty()) {
+      return res.status(400).render("candies/updateCandy", {
+        errors: errors.array(),
+        types,
+      });
+    }
+    const id = req.params.id;
+    const { name, company, quantity, price } = req.body;
+    const candyTypes = req.body.types;
+    await db.updateCandy(id, name, company, quantity, price);
+    const typeIds = extractTypeIds(types, candyTypes);
+
+    updateCandyTypeLink(id, typeIds);
+
+    res.redirect("/candies");
+  },
+];
+
 const extractTypeIds = (types, candyTypes) => {
   const typeIds = [];
   for (const candyType of candyTypes) {
@@ -91,9 +120,18 @@ async function linkCandyToType(candyId, typeIds) {
   }
 }
 
+async function updateCandyTypeLink(candyId, typeIds) {
+  await db.deleteCandyTypes(candyId);
+  for (const id of typeIds) {
+    await db.linkCandyToType(candyId, id);
+  }
+}
+
 module.exports = {
   candiesGet,
   createCandyGet,
   createCandyPost,
   candyDetailsGet,
+  updateCandyGet,
+  updateCandyPost,
 };

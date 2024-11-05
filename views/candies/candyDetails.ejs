@@ -3,15 +3,19 @@
     <%- include('../navbar') %>
     <div>
       <h3><%= candyDetails.name%></h3>
-      <p>Types:</p>
+      <p>Type(s):</p>
       <ul>
         <% candyDetails.types.forEach(type => { %>
         <li><%= type %></li>
         <% }); %>
       </ul>
       <p><%= candyDetails.company%></p>
-      <p><%= candyDetails.quantity %></p>
-      <p><%= candyDetails.price %></p>
+      <p>Quantity: <%= candyDetails.quantity %></p>
+      <p>Price: <%= candyDetails.price %></p>
+      <form action="/candies/update/<%=candyDetails.id%>">
+        <input type="submit" value="Update" />
+      </form>
+      <!-- <a href="/candies/update/<%=candyDetails.id%>">Update</a> -->
     </div>
   </body>
 </html>
