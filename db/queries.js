@@ -102,6 +102,11 @@ async function deleteCandyTypes(candyId) {
   await pool.query("DELETE FROM candy_types WHERE candy_id = $1;", [candyId]);
 }
 
+async function getCandyCount() {
+  const { rows } = await pool.query("SELECT COUNT(*) FROM candies");
+  return rows;
+}
+
 module.exports = {
   getCandies,
   getTypes,
@@ -114,4 +119,5 @@ module.exports = {
   updateCandy,
   deleteCandy,
   deleteCandyTypes,
+  getCandyCount,
 };
