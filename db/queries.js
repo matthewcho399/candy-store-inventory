@@ -93,6 +93,11 @@ async function updateCandy(id, name, company, quantity, price) {
   );
 }
 
+async function deleteCandy(candyId) {
+  await pool.query("DELETE FROM candies WHERE id = $1;", [candyId]);
+  await deleteCandyTypes(candyId);
+}
+
 async function deleteCandyTypes(candyId) {
   await pool.query("DELETE FROM candy_types WHERE candy_id = $1;", [candyId]);
 }
@@ -107,5 +112,6 @@ module.exports = {
   getCandyDetails,
   getCandiesByType,
   updateCandy,
+  deleteCandy,
   deleteCandyTypes,
 };

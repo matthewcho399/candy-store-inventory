@@ -10,6 +10,8 @@ router.post("/create", controller.createCandyPost);
 router.get("/update/:id", controller.updateCandyGet);
 router.post("/update/:id", controller.updateCandyPost);
 
+router.get("/delete/:id", controller.deleteCandy);
+
 router.get("/:id", controller.candyDetailsGet);
 
 module.exports = router;

@@ -104,6 +104,12 @@ const updateCandyPost = [
   },
 ];
 
+async function deleteCandy(req, res) {
+  const candyId = req.params.id;
+  await db.deleteCandy(candyId);
+  res.redirect("/candies");
+}
+
 const extractTypeIds = (types, candyTypes) => {
   const typeIds = [];
   if (!Array.isArray(candyTypes)) {
@@ -139,4 +145,5 @@ module.exports = {
   candyDetailsGet,
   updateCandyGet,
   updateCandyPost,
+  deleteCandy,
 };
