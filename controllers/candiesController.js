@@ -83,10 +83,12 @@ const updateCandyPost = [
   validateCandy,
   async (req, res) => {
     const errors = validationResult(req);
+    const candyDetails = await db.getCandyDetails(req.params.id);
     const types = await db.getTypes();
     if (!errors.isEmpty()) {
       return res.status(400).render("candies/updateCandy", {
         errors: errors.array(),
+        candy: candyDetails[0],
         types,
       });
     }
