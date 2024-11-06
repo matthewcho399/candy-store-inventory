@@ -104,6 +104,9 @@ const updateCandyPost = [
 
 const extractTypeIds = (types, candyTypes) => {
   const typeIds = [];
+  if (!Array.isArray(candyTypes)) {
+    candyTypes = candyTypes.split();
+  }
   for (const candyType of candyTypes) {
     for (const type of types) {
       if (candyType === type.type) {
