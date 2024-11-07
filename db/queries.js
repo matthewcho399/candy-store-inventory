@@ -107,6 +107,15 @@ async function getCandyCount() {
   return rows;
 }
 
+async function deleteType(id) {
+  await pool.query("DELETE FROM types WHERE id = $1;", [id]);
+  await deleteTypeTypes(id);
+}
+
+async function deleteTypeTypes(id) {
+  await pool.query("DELETE FROM candy_types WHERE type_id = $1;", [id]);
+}
+
 module.exports = {
   getCandies,
   getTypes,
@@ -120,4 +129,5 @@ module.exports = {
   deleteCandy,
   deleteCandyTypes,
   getCandyCount,
+  deleteType,
 };

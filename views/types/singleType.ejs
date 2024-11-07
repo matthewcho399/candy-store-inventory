@@ -2,7 +2,10 @@
   <body>
     <%- include('../navbar') %>
     <div>
-      <h2>Candies from this type</h2>
+      <h2>Candies of type: <%= type.name %></h2>
+      <form action="/types/delete/<%=type.id%>">
+        <input type="submit" value="Delete" />
+      </form>
       <% if (candies) {%> <% candies.forEach(candy => { %> <%-
       include('../partials/candyCard', {candy})%> <% }); %> <% } %>
     </div>

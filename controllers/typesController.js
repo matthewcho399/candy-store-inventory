@@ -26,8 +26,10 @@ async function typesGet(req, res) {
 }
 
 async function singleTypeGet(req, res) {
-  const candies = await db.getCandiesByType(req.params.type);
-  res.render("types/singleType", { candies });
+  const typeName = req.params.type;
+  const candies = await db.getCandiesByType(typeName);
+  const type = await db.getTypeByName(typeName);
+  res.render("types/singleType", { candies, type });
 }
 
 const createTypeGet = (req, res) => {
@@ -49,9 +51,15 @@ const createTypePost = [
   },
 ];
 
+async function deleteType(req, res) {
+  await db.deleteType(req.params.id);
+  res.redirect("/types");
+}
+
 module.exports = {
   typesGet,
   singleTypeGet,
   createTypeGet,
   createTypePost,
+  deleteType,
 };
