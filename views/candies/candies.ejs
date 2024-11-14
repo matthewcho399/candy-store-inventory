@@ -7,11 +7,15 @@
   </head>
   <body>
     <%- include('../navbar') %>
-    <div>
-      <p>Candies</p>
-      <a href="/candies/create">Create Candy</a>
-      <% if (candies) {%> <% candies.forEach(candy => { %> <%-
-      include('../partials/candyCard', {candy}) %> <% }); %> <% } %>
+    <div class="candies-body">
+      <div class="candies-header">
+        <p>All Candies</p>
+        <a href="/candies/create" class="button-link">Create Candy</a>
+      </div>
+      <div class="candies-container">
+        <% if (candies) {%> <% candies.forEach(candy => { %> <%-
+        include('../partials/candyCard', {candy}) %> <% }); %> <% } %>
+      </div>
     </div>
   </body>
 </html>
