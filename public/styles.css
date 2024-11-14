@@ -4,7 +4,7 @@
 
 body {
     margin: 0px;
-
+    background-color:aliceblue;
 }
 
 .navbar {
@@ -30,4 +30,18 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.homepage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 85%;
+}
+
+.homepage p {
+    font-size: 25px;
+    width: 40%;
+    text-align: center;
 }
