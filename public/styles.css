@@ -6,11 +6,16 @@ a {
     font-size: 20px;
     text-decoration: none;
     color: black;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
 }
 
 body {
     margin: 0px;
-    background-color:aliceblue;
+    background-color: aliceblue;
 }
 
 .navbar {
@@ -83,16 +88,8 @@ body {
 }
 
 .candy-card {
-    /* width: 27%;
-    height: 40vh;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    padding: 2px 16px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    overflow: hidden; */
-
     width: 23%;
+    background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 10px;
     overflow: hidden;
@@ -117,4 +114,156 @@ body {
     height: 100%;
     object-fit: cover;         
     border-radius: 8px 8px 0 0;
+}
+
+.details-body {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.details-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.details-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.details-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.details-label {
+    font-weight: bold;
+    margin-top: 15px;
+    color: #555;
+}
+
+.details-types-container {
+    padding: 0;
+    margin: 10px 0;
+}
+
+.details-type-item {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: inline-block;
+    margin: 5px;
+    color: #333;
+}
+
+.details-info {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.details-value {
+    font-weight: bold;
+    color: #333;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+  
+.update-button {
+    background-color: #4CAF50;
+    color: white;
+}
+  
+.update-button:hover {
+    background-color: #45a049;
+}
+  
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
+  
+.delete-button:hover {
+    background-color: #e53935;
+}
+
+.form-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    height: 100vh;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.candy-form {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-label {
+    font-size: 14px;
+    color: #555;
+}
+
+
+.form-input {
+  width: 100%;
+  padding: 8px 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.form-submit {
+    width: 100%;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+  
+.form-submit:hover {
+    background-color: #45a049;
 }

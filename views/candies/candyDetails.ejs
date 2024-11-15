@@ -8,24 +8,37 @@
   </head>
   <body>
     <%- include('../navbar') %>
-    <div>
-      <h3><%= candyDetails.name%></h3>
-      <img src="<%= candyDetails.image_url %>" />
-      <p>Type(s):</p>
-      <ul>
-        <% candyDetails.types.forEach(type => { %>
-        <li><%= type %></li>
-        <% }); %>
-      </ul>
-      <p><%= candyDetails.company%></p>
-      <p>Quantity: <%= candyDetails.quantity %></p>
-      <p>Price: <%= candyDetails.price %></p>
-      <form action="/candies/update/<%=candyDetails.id%>">
-        <input type="submit" value="Update" />
-      </form>
-      <form action="/candies/delete/<%=candyDetails.id%>">
-        <input type="submit" value="Delete" />
-      </form>
+    <div class="details-body">
+      <div class="details-container">
+        <h3 class="details-title"><%= candyDetails.name%></h3>
+        <img src="<%= candyDetails.image_url %>" class="details-image" />
+        <p class="details-label">Type(s):</p>
+        <ul class="details-types-container">
+          <% candyDetails.types.forEach(type => { %>
+          <li class="details-type-item">
+            <p><%= type %></p>
+          </li>
+          <% }); %>
+        </ul>
+        <p class="details-info">
+          Company: <span class="details-value"><%= candyDetails.company%></span>
+        </p>
+        <p class="details-info">
+          Quantity:
+          <span class="details-value"><%= candyDetails.quantity%></span>
+        </p>
+        <p class="details-info">
+          Price: $<span class="details-value"><%= candyDetails.price%></span>
+        </p>
+        <div class="buttons-container">
+          <form action="/candies/update/<%=candyDetails.id%>">
+            <input type="submit" value="Update" class="button update-button" />
+          </form>
+          <form action="/candies/delete/<%=candyDetails.id%>">
+            <input type="submit" value="Delete" class="button delete-button" />
+          </form>
+        </div>
+      </div>
     </div>
   </body>
 </html>

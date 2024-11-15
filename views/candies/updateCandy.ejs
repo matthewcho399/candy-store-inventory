@@ -8,71 +8,78 @@
   </head>
   <body>
     <%- include('../navbar') %>
-    <div>
-      <form method="POST" action="/candies/update/<%=candy.id%>">
-        <h2>New Candy</h2>
-        <%- include("../partials/errors.ejs") %>
-        <label for="name">Name: </label><br />
-        <input
-          type="text"
-          id="name"
-          name="name"
-          maxlength="20"
-          value="<%= candy.name %>"
-          required
-        /><br />
-
-        <label for="types">Types: </label><br />
-        <select id="types" name="types" multiple required>
-          <% if (types) { %> <% types.forEach(type => { %>
-            <option value="<%= type.type %>" <%= candy.types.includes(type.type) ? 'selected' : '' %>>
-                <%= type.type %>
-              </option>
-          <% }); %> <% } %></select
-        ><br />
-
-        <label for="company">Company: </label><br />
-        <input
-          type="text"
-          id="company"
-          name="company"
-          maxlength="20"
-          value="<%= candy.company %>"
-          required
-        /><br />
-
-        <label for="quantity">Quantity: </label><br />
-        <input
-          type="number"
-          id="quantity"
-          name="quantity"
-          min="0"
-          value="<%= candy.quantity %>"
-          required
-        /><br />
-
-        <label for="price">Price: </label><br />
-        <input
-          type="number"
-          id="price"
-          name="price"
-          step="any"
-          min="0"
-          value="<%= candy.price %>"
-          required
-        /><br />
-
-        <label for="image_url">Image Url: </label><br />
-        <input
-          type="text"
-          id="image_url"
-          name="image_url"
-          value="<%= candy.image_url %>"
-          required
-        /><br />
-
-        <input type="submit" value="Update" />
-      </form>
+    <div class="form-body">
+      <div class="form-container">
+        <form method="POST" action="/candies/update/<%=candy.id%>" class="candy-form">
+          <h2 class="form-title">Update Candy</h2>
+          <%- include("../partials/errors.ejs") %>
+          <label for="name" class="form-label">Name: </label><br />
+          <input
+            type="text"
+            id="name"
+            name="name"
+            maxlength="20"
+            value="<%= candy.name %>"
+            required
+            class="form-input"
+          /><br />
+  
+          <label for="types" class="form-label">Types: </label><br />
+          <select id="types" name="types" multiple required class="form-input">
+            <% if (types) { %> <% types.forEach(type => { %>
+              <option value="<%= type.type %>" <%= candy.types.includes(type.type) ? 'selected' : '' %>>
+                  <%= type.type %>
+                </option>
+            <% }); %> <% } %></select
+          ><br />
+  
+          <label for="company" class="form-label">Company: </label><br />
+          <input
+            type="text"
+            id="company"
+            name="company"
+            maxlength="20"
+            value="<%= candy.company %>"
+            required
+            class="form-input"
+          /><br />
+  
+          <label for="quantity" class="form-label">Quantity: </label><br />
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            min="0"
+            value="<%= candy.quantity %>"
+            required
+            class="form-input"
+          /><br />
+  
+          <label for="price" class="form-label">Price: </label><br />
+          <input
+            type="number"
+            id="price"
+            name="price"
+            step="any"
+            min="0"
+            value="<%= candy.price %>"
+            required
+            class="form-input"
+          /><br />
+  
+          <label for="image_url" class="form-label">Image Url: </label><br />
+          <input
+            type="text"
+            id="image_url"
+            name="image_url"
+            value="<%= candy.image_url %>"
+            required
+            class="form-input"
+          /><br />
+  
+          <input type="submit" value="Update" class="form-submit"/>
+        </form>
+      </div>
     </div>
   </body>
 </html>
