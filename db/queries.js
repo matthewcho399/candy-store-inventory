@@ -7,6 +7,7 @@ async function getCandies() {
             candies.company, 
             candies.quantity, 
             candies.price, 
+            candies.image_url,
             COALESCE(array_agg(types.type), '{}') 
             AS types 
     FROM candies 
@@ -29,10 +30,10 @@ async function getTypeByName(type) {
   return rows[0];
 }
 
-async function createCandy(name, company, quantity, price) {
+async function createCandy(name, company, quantity, price, image_url) {
   const candy = await pool.query(
-    "INSERT INTO candies ( name, company, quantity, price ) VALUES ($1, $2, $3, $4) RETURNING id;",
-    [name, company, quantity, price]
+    "INSERT INTO candies ( name, company, quantity, price, image_url ) VALUES ($1, $2, $3, $4, $5) RETURNING id;",
+    [name, company, quantity, price, image_url]
   );
   return candy.rows[0].id;
 }
@@ -54,13 +55,14 @@ async function getCandyDetails(id) {
             candies.name AS name, 
             candies.company, 
             candies.quantity, 
-            candies.price,  
+            candies.price,
+            candies.image_url,  
             COALESCE(array_agg(types.type), '{}') AS types
     FROM candies 
     LEFT JOIN candy_types ON candies.id = candy_types.candy_id 
     LEFT JOIN types ON candy_types.type_id = types.id 
     WHERE candies.id = $1 
-    GROUP BY candies.id, candies.name, candies.company, candies.quantity, candies.price;`,
+    GROUP BY candies.id, candies.name, candies.company, candies.quantity, candies.price, candies.image_url;`,
     [id]
   );
   return rows;
@@ -73,23 +75,24 @@ async function getCandiesByType(type) {
             candies.company, 
             candies.quantity, 
             candies.price, 
+            candies.image_url,
             COALESCE(array_agg(types.type), '{}') AS types
      FROM candies
      JOIN candy_types ON candies.id = candy_types.candy_id
      JOIN types ON candy_types.type_id = types.id
      WHERE types.type = $1
-     GROUP BY candies.id, candies.name, candies.company, candies.quantity, candies.price;`,
+     GROUP BY candies.id, candies.name, candies.company, candies.quantity, candies.price, candies.image_url;`,
     [type]
   );
   return rows;
 }
 
-async function updateCandy(id, name, company, quantity, price) {
+async function updateCandy(id, name, company, quantity, price, image_url) {
   await pool.query(
     `UPDATE candies 
-    SET name = $2, company = $3, quantity = $4, price = $5
+    SET name = $2, company = $3, quantity = $4, price = $5, image_url = $6
     WHERE id = $1;`,
-    [id, name, company, quantity, price]
+    [id, name, company, quantity, price, image_url]
   );
 }
 

@@ -57,9 +57,15 @@ const createCandyPost = [
         types,
       });
     }
-    const { name, company, quantity, price } = req.body;
+    const { name, company, quantity, price, image_url } = req.body;
     const candyTypes = req.body.types;
-    const candyId = await db.createCandy(name, company, quantity, price);
+    const candyId = await db.createCandy(
+      name,
+      company,
+      quantity,
+      price,
+      image_url
+    );
     const typeIds = extractTypeIds(types, candyTypes);
 
     linkCandyToType(candyId, typeIds);
@@ -93,9 +99,9 @@ const updateCandyPost = [
       });
     }
     const id = req.params.id;
-    const { name, company, quantity, price } = req.body;
+    const { name, company, quantity, price, image_url } = req.body;
     const candyTypes = req.body.types;
-    await db.updateCandy(id, name, company, quantity, price);
+    await db.updateCandy(id, name, company, quantity, price, image_url);
     const typeIds = extractTypeIds(types, candyTypes);
 
     updateCandyTypeLink(id, typeIds);

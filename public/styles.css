@@ -79,19 +79,42 @@ body {
 .candies-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-around; 
 }
 
 .candy-card {
-    width: 27%;
+    /* width: 27%;
     height: 40vh;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     padding: 2px 16px;
     border-radius: 10px;
     margin-bottom: 15px;
+    overflow: hidden; */
+
+    width: 23%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 15px;
+    transition: 0.3s;
 }
 
 .candy-card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.image-container {
+    width: 100%;
+    aspect-ratio: 1;     
+    overflow: hidden;
+    position: relative;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         
+    border-radius: 8px 8px 0 0;
 }

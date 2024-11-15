@@ -9,6 +9,7 @@
     <%- include('../navbar') %>
     <div>
       <h3><%= candyDetails.name%></h3>
+      <img src="<%= candyDetails.image_url %>" />
       <p>Type(s):</p>
       <ul>
         <% candyDetails.types.forEach(type => { %>

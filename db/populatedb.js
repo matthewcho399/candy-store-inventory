@@ -8,15 +8,16 @@ CREATE TABLE IF NOT EXISTS candies (
     name VARCHAR (25),
     company VARCHAR (25),
     quantity INTEGER,
-    price DECIMAL
+    price DECIMAL,
+    image_url VARCHAR (255)
 );
 
-INSERT INTO candies (name, company, quantity, price)
+INSERT INTO candies (name, company, quantity, price, image_url)
 VALUES
-    ('Twix', 'Mars', 5, 2.99),
-    ('Sour Gummy Worms', 'Trolli', 30, 3.50),
-    ('Gummy Bears', 'Albanese', 10, 6.99),
-    ('M&Ms', 'M&M', 50, 1.99);
+    ('Twix', 'Mars', 5, 2.99, 'https://i5.walmartimages.com/seo/Twix-Caramel-Full-Size-Chocolate-Cookie-Candy-Bars-1-79-oz-Bar_e0581047-983d-48de-8e1b-da7ccd82209f.95ab125cd47927ae2915c1c26540e7b9.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF'),
+    ('Sour Gummy Worms', 'Trolli', 30, 3.50, 'https://m.media-amazon.com/images/I/81v2juMQZuL._AC_UF894,1000_QL80_.jpg'),
+    ('Gummy Bears', 'Albanese', 10, 6.99, 'https://cdn11.bigcommerce.com/s-riqk6cih6h/images/stencil/1280x1280/products/534/1982/_0009_53348-2021-12-Flavor-Gummi-Bears-7.5oz-Bag__23227.1656534346.png?c=1'),
+    ('M&Ms', 'M&M', 50, 1.99, 'https://m.media-amazon.com/images/I/51wYGW6fX2L._AC_UF894,1000_QL80_.jpg');
 
 CREATE TABLE IF NOT EXISTS types (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
