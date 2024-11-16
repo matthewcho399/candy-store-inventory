@@ -1,15 +1,21 @@
-<div class="candy-card">
-  <div class="image-container">
-    <img src="<%= candy.image_url %>" alt="candy" />
+<a href="/candies/<%= candy.id %>" class="card-candy-link">
+  <div class="candy-card">
+    <div class="image-container">
+      <img
+        src="<%= candy.image_url %>"
+        alt="<%= candy.name %>"
+        class="candy-image"
+      />
+    </div>
+    <h3 class="candy-title"><%= candy.name %></h3>
+    <p class="candy-label">Type(s):</p>
+    <ul class="candy-types">
+      <% if (candy.types) { %> <% candy.types.forEach(type => { %>
+      <li class="candy-type-item"><%= type %></li>
+      <% }); %> <% } %>
+    </ul>
+    <p class="candy-info"><%= candy.company %></p>
+    <p class="candy-info">Price: $<%= candy.price %></p>
+    <p class="candy-info">Quantity: <%= candy.quantity %></p>
   </div>
-  <h3><a href="/candies/<%=candy.id %>"><%= candy.name%></a></h3>
-  <p>Type(s):</p>
-  <ul>
-    <% if (candy.types) { %> <% candy.types.forEach(type => { %>
-    <li><%= type %></li>
-    <% }); %> <%}%>
-  </ul>
-  <p><%= candy.company%></p>
-  <p>Price: $<%= candy.price%></p>
-  <p>Quantity: <%= candy.quantity%></p>
-</div>
+</a>
