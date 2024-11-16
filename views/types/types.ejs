@@ -8,16 +8,21 @@
   </head>
   <body>
     <%- include('../navbar') %>
-    <div>
-      <p>Types</p>
-      <a href="/types/create">Create Type</a>
-      <% if (types) {%> <% types.forEach(type => { %>
-      <div>
-        <a href="/types/<%= type.type %>">
-          <h3><%= type.type%></h3>
-        </a>
+    <div class="types-body">
+      <div class="types-container">
+        <div class="types-header-container">
+          <p class="types-header">Types</p>
+          <a href="/types/create" class="create-type-link">Create Type</a>
+        </div>
+
+        <% if (types) {%> <% types.forEach(type => { %>
+        <div class="type-item">
+          <a href="/types/<%= type.type %>" class="type-link">
+            <h3 class="type-name"><%= type.type%></h3>
+          </a>
+        </div>
+        <% }); %> <% } %>
       </div>
-      <% }); %> <% } %>
     </div>
   </body>
 </html>
