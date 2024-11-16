@@ -5,7 +5,7 @@ const homeRouter = require("./routes/homeRouter");
 const candiesRouter = require("./routes/candiesRouter");
 const typesRouter = require("./routes/typesRouter");
 const assetsPath = path.join(__dirname, "public");
-const PORT = process.env.PORT || 5000;
+const PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(assetsPath));
