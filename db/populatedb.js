@@ -47,14 +47,33 @@ VALUES
 `;
 
 async function main() {
-  console.log("seeding...");
-  const client = new Client({
-    connectionString: argv[2],
-  });
-  await client.connect();
-  await client.query(SQL);
-  await client.end();
-  console.log("done");
+  try {
+    console.log("seeding...");
+
+    const client = new Client({
+      connectionString: process.env.DATABASE_URL,
+    });
+
+    try {
+      await client.connect();
+      console.log("Connected to the database.");
+    } catch (err) {
+      console.error("Failed to connect:", err);
+      return;
+    }
+
+    try {
+      await client.query(SQL);
+      console.log("Database seeded successfully.");
+    } catch (err) {
+      console.error("Failed to execute query:", err);
+    } finally {
+      await client.end();
+      console.log("Connection closed.");
+    }
+  } catch (err) {
+    console.error("Unexpected error:", err);
+  }
 }
 
 main();
