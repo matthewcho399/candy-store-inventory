@@ -8,21 +8,24 @@
   </head>
   <body>
     <%- include('../navbar') %>
-    <div>
-      <form method="POST" action="/types/create">
-        <h2>New Type</h2>
-        <%- include("../partials/errors.ejs") %>
-        <label for="type">Type: </label><br />
-        <input
-          type="text"
-          id="type"
-          name="type"
-          minlength="1"
-          maxlength="20"
-          required
-        /><br />
-        <input type="submit" value="Submit" />
-      </form>
+    <div class="type-form-body">
+      <div class="form-container">
+        <form method="POST" action="/types/create" class="candy-form">
+          <h2 class="form-title">New Type</h2>
+          <%- include("../partials/errors.ejs") %>
+          <label for="type" class="form-label">Type: </label><br />
+          <input
+            type="text"
+            id="type"
+            name="type"
+            minlength="1"
+            maxlength="20"
+            required
+            class="form-input"
+          /><br />
+          <input type="submit" value="Submit" class="form-submit" />
+        </form>
+      </div>
     </div>
   </body>
 </html>
