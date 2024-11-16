@@ -106,7 +106,7 @@ async function deleteCandyTypes(candyId) {
 }
 
 async function getCandyCount() {
-  const { rows } = await pool.query("SELECT COUNT(*) FROM candies");
+  const { rows } = await pool.query("SELECT COUNT(*) FROM candies;");
   return rows;
 }
 
